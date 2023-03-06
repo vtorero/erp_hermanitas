@@ -12,7 +12,7 @@ import { OpenDialogComponent } from 'app/dialog/open-dialog/open-dialog.componen
 export class UsuarioComponent implements OnInit {
   dataSource: any;
   cancela: boolean = false;
-  displayedColumns = ['num_documento', 'razon_social', 'departamento','provincia','distrito', 'borrar'];
+  displayedColumns = ['nombre_completo', 'correo', 'estado'];
   @ViewChild(MatSortModule) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(public dialog: MatDialog) { }
