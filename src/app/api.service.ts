@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+import {Global} from './global';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ApiService {
   }*/
 
   getApi(ruta: string) {
-    return this._http.get( 'api.php/' + ruta,
+    return this._http.get(Global.BASE_API_URL + 'api.php/' + ruta,
       { headers: this.headers }
     ).pipe(map(result => result));
   }
@@ -28,6 +29,12 @@ export class ApiService {
 
   getProductos() {
     return this._http.get('api.php/productos',
+      { headers: this.headers }
+    ).pipe(map(result => result));
+  }
+
+  getUsuarios() {
+    return this._http.get(Global.BASE_API_URL +'api.php/usuarios',
       { headers: this.headers }
     ).pipe(map(result => result));
   }
@@ -124,7 +131,7 @@ export class ApiService {
   getClienteVenta(id:number):Observable<Clientes[]> {
     return this._http.get<Clientes[]>(Global.BASE_API_URL + 'api.php/cliente/'+id, { headers: this.headers });
   }
-  
+
   getProveedorSelect(value = ''): Observable<Proveedor[]> {
     if (value == '') {
       return this._http.get<Proveedor[]>(Global.BASE_API_URL + 'api.php/proveedores', { headers: this.headers });
@@ -150,7 +157,7 @@ export class ApiService {
 
   getAvisosInventarios(): Observable<Avisos[]> {
     return this._http.get<Avisos[]>(Global.BASE_API_URL + 'api.php/alertaintentario', { headers: this.headers });
-    
+
   }
 
   public GuardarCategoria(datos: Categoria): Observable<any> {
