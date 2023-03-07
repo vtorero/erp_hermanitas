@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -14,6 +15,7 @@ import { OpenDialogComponent } from 'app/dialog/open-dialog/open-dialog.componen
 export class UsuarioComponent implements OnInit {
   dataSource: any;
   cancela: boolean = false;
+  selection = new SelectionModel(false, []);
   displayedColumns = ['nombre_completo', 'correo', 'estado'];
   @ViewChild(MatSortModule) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -21,7 +23,11 @@ export class UsuarioComponent implements OnInit {
     private api: ApiService) { }
 
   ngOnInit(): void {
-    this.renderDataTable()
+    this.renderDataTable();
+  }
+
+  selectedRow(row) {
+    console.log('selectedRow', row)
   }
 
   renderDataTable() {
@@ -30,6 +36,7 @@ export class UsuarioComponent implements OnInit {
       this.dataSource.data = x;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      console.log(this.dataSource)
     },
       error => {
         console.log('Error de conexion de datatable!' + error);

@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   getUsuarios() {
-    return this._http.get(Global.BASE_API_URL +'api.php/usuarios',
+    return this._http.get(Global.BASE_API_URL+'api.php/usuarios',
       { headers: this.headers }
     ).pipe(map(result => result));
   }

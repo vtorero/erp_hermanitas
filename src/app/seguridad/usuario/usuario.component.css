@@ -1,3 +1,10 @@
 .example-button-row{
     background-color: white;
 }
+.mat-row.hovered {
+    background: #eee;
+}
+
+.mat-row.highlighted {
+  background: #999;
+}
