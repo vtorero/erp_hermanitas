@@ -1,19 +1,19 @@
 <mat-card>
-    
+
     <mat-card-content>
-      <form  [formGroup]="form">
+          <form  [formGroup]="form">
       <h3 mb-10>Agregar Usuario</h3>
         <mat-form-field appearance="fill">
             <mat-label>Nombre completo</mat-label>
-            <input matInput type="text" required formControlName="nombre">
+            <input matInput  [(ngModel)]="datos.usuario.nombres" type="text" required formControlName="nombre">
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Correo electrónico</mat-label>
-            <input matInput required type="email" formControlName="correo">
+            <input matInput required type="email" [(ngModel)]="datos.usuario.email" formControlName="correo">
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Estado</mat-label>
-            <mat-select required formControlName="estado">
+            <mat-select required [(ngModel)]="datos.usuario.estado" formControlName="estado">
               <mat-option value="inactivo">Inactivo</mat-option>
               <mat-option value="activo">Activo</mat-option>
             </mat-select>
@@ -22,6 +22,6 @@
             <button  mat-raised-button [mat-dialog-close]="false" color="primary">Cancelar</button>
             <button mat-raised-button [mat-dialog-close]="data" cdkFocusInitial  color="primary" [disabled]="form.invalid">Confirmar</button>
             </div>
-          </form> 
+          </form>
         </mat-card-content>
   </mat-card>

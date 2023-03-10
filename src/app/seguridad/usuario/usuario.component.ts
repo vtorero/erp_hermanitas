@@ -7,6 +7,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'app/api.service';
 import { OpenDialogComponent } from 'app/dialog/open-dialog/open-dialog.component';
 
+export interface usuario {
+  id: string;
+  nombre: string;
+  correo: string;
+  estado: string;
+}
+
+
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -14,6 +22,7 @@ import { OpenDialogComponent } from 'app/dialog/open-dialog/open-dialog.componen
 })
 export class UsuarioComponent implements OnInit {
   dataSource: any;
+  selectedRowIndex:any;
   cancela: boolean = false;
   selection = new SelectionModel(false, []);
   displayedColumns = ['nombre_completo', 'correo', 'estado'];
@@ -26,8 +35,13 @@ export class UsuarioComponent implements OnInit {
     this.renderDataTable();
   }
 
-  selectedRow(row) {
-    console.log('selectedRow', row)
+  selected(row) {
+    this.selectedRowIndex=row;
+    console.log('selectedRow',row)
+  }
+
+  editar(){
+    console.log(this.selectedRowIndex);
   }
 
   renderDataTable() {
@@ -43,6 +57,19 @@ export class UsuarioComponent implements OnInit {
       });
   }
 
+  openDialogEdit(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(OpenDialogComponent, {
+      width: '400px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {
+      animal:'testtt',
+      usuario:this.selectedRowIndex
+      },
+    });
+  }
+
+
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(OpenDialogComponent, {
       width: '400px',
@@ -50,8 +77,11 @@ export class UsuarioComponent implements OnInit {
       exitAnimationDuration,
       data: {
         animal: 'unicorn',
+        usuario:this.selectedRowIndex
       },
     });
   }
+
+  clickedRows = new Set<usuario>();
 
 }

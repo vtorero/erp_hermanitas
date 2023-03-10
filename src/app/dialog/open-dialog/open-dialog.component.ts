@@ -23,12 +23,12 @@ stockPeso;
 dataExistencias:any;
 dataUnidades = [{ id: 'NIU', tipo: 'Unidades' }, { id: 'KGM', tipo: 'Kilogramo' }];
 constructor(private api:ApiService,  private fb:FormBuilder,
-    //@Inject(MAT_DIALOG_DATA) public data: DetalleVenta
-    ) { 
+  @Inject(MAT_DIALOG_DATA) public datos: {animal: string,usuario:any}
+    ) {
       this.form=this.fb.group({
         nombre:['',Validators.required],
         correo:['',Validators.email],
-        
+
         estado:['',Validators.required],
       });
 
@@ -48,9 +48,9 @@ constructor(private api:ApiService,  private fb:FormBuilder,
       }
     });
   }
-  onKey(value) { 
-  this.dataArray= []; 
-  this.selectSearch(value);       
+  onKey(value) {
+  this.dataArray= [];
+  this.selectSearch(value);
 }
 /*
 selectSearch(value:string){
@@ -59,7 +59,7 @@ selectSearch(value:string){
       this.dataProducto = data;
     }
   } );
-  
+
 }
 
 changemedida(ev,val){
@@ -89,7 +89,7 @@ if(ev.source){
         this.toastr.error("Inventario de " +this.stock[0].nombre+ " insuficiente");
          this.data.cantidad=null;
          cantidad;
-      
+
     }
   }
     if(this.data.unidadmedida=="KGM"){
@@ -100,8 +100,8 @@ if(ev.source){
       }
     }
     */
-    
-  
+
+
 
   ngOnInit() {
     this.getProductos();
