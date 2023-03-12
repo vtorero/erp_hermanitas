@@ -20,6 +20,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+
+
 
 
 
@@ -41,7 +45,10 @@ import {MatTableModule} from '@angular/material/table';
     MatDialogModule,
     MatSelectModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
+
 
   ],
   exports:[
@@ -59,7 +66,9 @@ import {MatTableModule} from '@angular/material/table';
     MatDialogModule,
     MatSelectModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class SharedModule { }

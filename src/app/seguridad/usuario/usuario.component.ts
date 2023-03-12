@@ -1,8 +1,10 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort,MatSortModule } from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
+import { MatSortModule  } from '@angular/material/sort';
+import {MatSort,Sort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'app/api.service';
 import { OpenDialogComponent } from 'app/dialog/open-dialog/open-dialog.component';
@@ -25,15 +27,18 @@ export class UsuarioComponent implements OnInit {
   selectedRowIndex:any;
   cancela: boolean = false;
   selection = new SelectionModel(false, []);
-  displayedColumns = ['nombre_completo', 'correo', 'estado'];
-  @ViewChild(MatSortModule) sort: MatSort;
+  displayedColumns = ['nombres', 'email', 'estado'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('empTbSort') empTbSort = new MatSort();
   constructor(public dialog: MatDialog,
-    private api: ApiService) { }
+    private api: ApiService,
+  ) { }
 
   ngOnInit(): void {
     this.renderDataTable();
   }
+
+
 
   selected(row) {
     this.selectedRowIndex=row;
@@ -48,10 +53,10 @@ export class UsuarioComponent implements OnInit {
     this.api.getUsuarios().subscribe(x => {
       this.dataSource = new MatTableDataSource();
       this.dataSource.data = x;
-      this.dataSource.sort = this.sort;
+      this.empTbSort.disableClear = true;
+      this.dataSource.sort = this.empTbSort;
       this.dataSource.paginator = this.paginator;
-      console.log(this.dataSource)
-    },
+      },
       error => {
         console.log('Error de conexion de datatable!' + error);
       });

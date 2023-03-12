@@ -14,8 +14,8 @@
           <mat-form-field appearance="fill">
             <mat-label>Estado</mat-label>
             <mat-select required [(ngModel)]="datos.usuario.estado" formControlName="estado">
-              <mat-option value="inactivo">Inactivo</mat-option>
-              <mat-option value="activo">Activo</mat-option>
+              <mat-option value="0">Inactivo</mat-option>
+              <mat-option value="1">Activo</mat-option>
             </mat-select>
           </mat-form-field>
           <div mat-dialog-actions>

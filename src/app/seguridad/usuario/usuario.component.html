@@ -7,7 +7,7 @@
           <button mat-icon-button color="primary" (click)="openDialog('0ms','0ms')" aria-label="Example icon button with a vertical three dot icon">
             <i class="material-icons">post_add</i>
           </button>
-          <button mat-icon-button color="primary"  (click)="openDialogEdit('1000ms','1000ms')" aria-label="Example icon button with a home icon">
+          <button mat-icon-button color="primary"  (click)="openDialogEdit('10ms','10ms')" aria-label="Example icon button with a home icon">
             <i class="material-icons">edit_note</i>
           </button>
           <button mat-icon-button color="primary" aria-label="Example icon button with a menu icon">
@@ -30,19 +30,20 @@
                     <p class="card-category">Usuarios del Sistema</p>
                 </div>
                 <div class="card-body">
-                    <mat-table  [dataSource]="dataSource" matSort>
+
+                    <mat-table  [dataSource]="dataSource"  matSort #empTbSort="matSort">
                         <!--  Columna ID-->
-                        <ng-container matColumnDef="nombre_completo">
+                        <ng-container matColumnDef="nombres">
                               <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Completo</mat-header-cell>
                               <mat-cell *matCellDef="let row"> {{row.nombres}} </mat-cell>
                         </ng-container>
                        <!-- Columna Apellido -->
-                        <ng-container matColumnDef="correo">
-                              <mat-header-cell *matHeaderCellDef mat-sort-header> Email</mat-header-cell>
+                        <ng-container matColumnDef="email">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
                               <mat-cell *matCellDef="let row">{{row.email}} </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="estado">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header> Estado</mat-header-cell>
+                          <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
                           <mat-cell *matCellDef="let row">{{row.estado}} </mat-cell>
                     </ng-container>
 
@@ -51,8 +52,10 @@
                         <mat-header-row *matHeaderRowDef="displayedColumns" class="encabezado"></mat-header-row>
                         <mat-row *matRowDef="let row; columns: displayedColumns;"  (click)="selected(row)" [ngClass]="{'highlighted': selectedRowIndex == row}"
                         (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
+
                       </mat-table>
-                   <!---- <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="10" [showFirstLastButtons]></mat-paginator>-->
+                      <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="5" [showFirstLastButtons]></mat-paginator>
+
                 </div>
             </div>
         </div>
